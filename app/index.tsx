@@ -11,7 +11,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 
@@ -72,63 +71,60 @@ export default function Index() {
   };
 
   return (
-    //Usei esse pois invés da view padrão, pois no meu celular ao abrir o teclado, ele não fecha se não usar ele, é tranquilo de usar
-    // e também no celular a cor das letras dos inputs tá meio apagado, mas no web funciona perfeito.
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <KeyboardAvoidingView
-        style={styles.keyboardContainer}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        <View style={styles.container}>
-          <Text style={styles.titulo}>RotaLeve{"\n"}Seu simulador de Viagens</Text>
+    // Como estava dando problema no meu ios, o teclado não fechava e usei esse KeyBoardAvoidingView pra resolver isso
+    <KeyboardAvoidingView
+      style={styles.keyboardContainer}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <View style={styles.container}>
+        <Text style={styles.titulo}>RotaLeve{"\n"}Seu simulador de Viagens</Text>
 
-          <TextInput
-            style={styles.input}
-            value={destino}
-            onChangeText={setDestino}
-            placeholder="Destino"
-            returnKeyType="done"
-            onSubmitEditing={Keyboard.dismiss}
-          />
-          <TextInput
-            style={styles.input}
-            value={orcamentoTotal}
-            onChangeText={setOrcamentoTotal}
-            keyboardType="numeric"
-            placeholder="Orcamento total"
-            returnKeyType="done"
-            onSubmitEditing={Keyboard.dismiss}
-          />
-          <TextInput
-            style={styles.input}
-            value={quantidadeDias}
-            onChangeText={setQuantidadeDias}
-            keyboardType="numeric"
-            placeholder="Quantidade de dias"
-            returnKeyType="done"
-            onSubmitEditing={Keyboard.dismiss}
-          />
-          <TextInput
-            style={styles.input}
-            value={quantidadePessoas}
-            onChangeText={setQuantidadePessoas}
-            keyboardType="numeric"
-            placeholder="Quantidade de pessoas"
-            returnKeyType="done"
-            onSubmitEditing={Keyboard.dismiss}
-          />
+        <TextInput
+          style={styles.input}
+          value={destino}
+          onChangeText={setDestino}
+          placeholder="Destino"
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+        />
+        <TextInput
+          style={styles.input}
+          value={orcamentoTotal}
+          onChangeText={setOrcamentoTotal}
+          keyboardType="numeric"
+          placeholder="Orcamento total"
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+        />
+        <TextInput
+          style={styles.input}
+          value={quantidadeDias}
+          onChangeText={setQuantidadeDias}
+          keyboardType="numeric"
+          placeholder="Quantidade de dias"
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+        />
+        <TextInput
+          style={styles.input}
+          value={quantidadePessoas}
+          onChangeText={setQuantidadePessoas}
+          keyboardType="numeric"
+          placeholder="Quantidade de pessoas"
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+        />
 
-          <View>
-            <Pressable style={styles.button} onPress={calcularOrcamento}>
-              <Text style={styles.botaoCalcular}>Calcular</Text>
-            </Pressable>
-            <Pressable onPress={limparFormulario}>
-              <Text style={styles.botaoLimpar}>Limpar Formulario</Text>
-            </Pressable>
-          </View>
+        <View>
+          <Pressable style={styles.button} onPress={calcularOrcamento}>
+            <Text style={styles.botaoCalcular}>Calcular</Text>
+          </Pressable>
+          <Pressable onPress={limparFormulario}>
+            <Text style={styles.botaoLimpar}>Limpar Formulario</Text>
+          </Pressable>
         </View>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -144,7 +140,6 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 24,
-    fontWeight: "700",
     color: "#1b8882",
     marginBottom: 16,
   },
